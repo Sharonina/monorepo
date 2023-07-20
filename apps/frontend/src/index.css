@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  h1 {
-    @apply text-red-600;
+  button {
+    @apply mx-2 rounded-md p-4;
   }
 }
