@@ -5,8 +5,18 @@ import { CreateUser } from "./components/CreateUser/CreateUser";
 import { UsersList } from "./components/UsersList/UsersList";
 import { UserItem } from "./components/UserItem/UserItem";
 
+interface User {
+  name: string;
+  number: number;
+  contactType: string;
+}
+
+interface Props {
+  defaultUsers: User[];
+}
+
 function App() {
-  const defaultUsers = [
+  const defaultUsers: User[] = [
     {
       name: "Anita",
       number: 11111,
@@ -24,17 +34,17 @@ function App() {
     },
   ];
 
-  const [users, setUsers] = useState(defaultUsers);
-  const [filteredUsers, setFilteredUsers] = useState(null); // Estado para almacenar los usuarios filtrados
-  const [sortOrder, setSortOrder] = useState("asc"); // Estado para controlar el orden
+  const [users, setUsers] = useState<User[]>(defaultUsers);
+  const [filteredUsers, setFilteredUsers] = useState<User[] | null>(null); // Estado para almacenar los usuarios filtrados
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc"); // Estado para controlar el orden
 
-  const deleteUser = (number) => {
+  const deleteUser = (number: number) => {
     const newUsers = users.filter((user) => user.number !== number);
     setUsers(newUsers);
   };
 
-  const createNewUser = (name, number, contactType) => {
-    const newUser = {
+  const createNewUser = (name: string, number: number, contactType: string) => {
+    const newUser: User = {
       name,
       number,
       contactType,
@@ -43,7 +53,7 @@ function App() {
     handleFilter(filteredUsers ? filteredUsers[0].contactType : "Todos"); // Vuelve a aplicar el filtro después de agregar el nuevo usuario
   };
 
-  const handleFilter = (type) => {
+  const handleFilter = (type: string) => {
     if (type === "Todos") {
       setFilteredUsers(null);
     } else {
